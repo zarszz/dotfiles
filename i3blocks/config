@@ -1,0 +1,57 @@
+separator=true
+separator_block_width=15
+border_top=0
+border_left=0
+border_right=0
+border_bottom=1
+border=#ffffff55
+
+[urxvt shorcut]
+full_text= urxvt
+command=urxvt
+align=center
+
+[vs code shorcut]
+full_text= code
+command=code
+
+# Volume indicator
+#
+# The first parameter sets the step (and units to display)
+# The second parameter overrides the mixer selection
+# See the script for details.
+[volume]
+full_text=
+label= /
+command=~/i3blocks-script/volume/volume3
+interval=1
+signal=12
+
+
+# Network interface monitoring
+#
+# If the instance is not specified, use the interface used for default route.
+# The address can be forced to IPv4 or IPv6 with -4 or -6 switches
+
+[wifi]
+INTERFACE=wlp3s0
+command=~/i3blocks-script/wifi/wifi
+label=wifi:
+interval=3
+
+
+# Battery indicator
+#
+# The battery instance defaults to 0.
+[battery]
+command=~/i3blocks-script/battery/battery
+label=
+interval=1
+command=acpi --battery > bat; sed -i -e 's/ until charged//g' bat; sed -i -e 's/Battery 0: //g' bat; sed -i -e 's/ remaining//g' bat; sed -i -e 's/,//g' bat; cat bat; rm bat
+
+# Date Time
+#
+[time]
+command=date '+%Y-%m-%d %H:%M'
+interval=5
+
