@@ -1,24 +1,20 @@
 " enable panthogen
 execute pathogen#infect()
 
+set runtimepath+=~/.vim-plugins/LanguageClient-neovim
+
 " basic vim command to enable extra feature in vim
-set nocompatible      " We're running Vim, not Vi!
+set nocompatible              " be iMproved, required
+set number
 syntax on             " Enable syntax highlighting
-filetype on           " Enable filetype detection
-filetype plugin on    " Enable filetype-specific plugins
+filetype plugin indent on
+filetype on
+filetype indent on
 set cursorline
 hi CursorLineNr   term=bold ctermfg=Yellow gui=bold guifg=Yellow
 
-
 " configuration for oceanicNext colorschema
-"if (has("termguicolors")) 
-"	set termguicolors 
-"endif
-"colorscheme OceanicNext
 let g:airline_theme='oceanicnext'
-"let g:oceanic_next_terminal_bold = 1
-" end of configuration
-
 
 " enable mouse mode
 set mouse=a
@@ -59,7 +55,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-
+let g:ycm_use_ultisnips_completer = 1
 
 " YouCompleteMe configuration
 let g:ycm_autoclose_preview_window_after_completion = 1
@@ -67,25 +63,23 @@ let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_insertion = 0
 
 let g:ycm_global_ycm_extra_conf = "~/.vim/ycm_extra_conf.py"
+let g:LanguageClient_serverCommands = { 'ruby': ['solargraph', 'stdio'] }
+let g:LanguageClient_autoStart=1
+let g:LanguageClient_autoStop=1
 
-"set number
-set number
-set cpoptions+=n
+"if has("autocmd") && exists("+omnifunc")
+"autocmd Filetype *
+"	    \   if &omnifunc == "" |
+"	    \           setlocal omnifunc=syntaxcomplete#Complete |
+"	    \   endif
+"endif
 
+autocmd Filetype python setlocal tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType c,cpp setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
+autocmd FileType eruby setlocal expandtab shiftwidth=2 tabstop=2
 
 " ruby configuration
-let g:rubycomplete_buffer_loading = 1 
-let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_rails = 1
 let g:vimrubocop_config = '~/rubocop.yaml'
-
-
-if has("autocmd") && exists("+omnifunc")
-autocmd Filetype *
-	    \   if &omnifunc == "" |
-	    \           setlocal omnifunc=syntaxcomplete#Complete |
-	    \   endif
-endif
-
-" java configuration
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
+let g:vimrubocop_keymap = 0
+nmap <Leader>r :RuboCop<CR>
