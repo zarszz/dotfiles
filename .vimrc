@@ -61,25 +61,20 @@ let g:ycm_use_ultisnips_completer = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_insertion = 0
-
 let g:ycm_global_ycm_extra_conf = "~/.vim/ycm_extra_conf.py"
+
 let g:LanguageClient_serverCommands = { 'ruby': ['solargraph', 'stdio'] }
 let g:LanguageClient_autoStart=1
 let g:LanguageClient_autoStop=1
 
-"if has("autocmd") && exists("+omnifunc")
-"autocmd Filetype *
-"	    \   if &omnifunc == "" |
-"	    \           setlocal omnifunc=syntaxcomplete#Complete |
-"	    \   endif
-"endif
-
-autocmd Filetype python setlocal tabstop=4 shiftwidth=4 softtabstop=4
-autocmd FileType c,cpp setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
-autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
-autocmd FileType eruby setlocal expandtab shiftwidth=2 tabstop=2
+autocmd Filetype python,c,cpp setlocal tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType ruby,eruby,scss setlocal expandtab shiftwidth=2 tabstop=2
 
 " ruby configuration
 let g:vimrubocop_config = '~/rubocop.yaml'
 let g:vimrubocop_keymap = 0
 nmap <Leader>r :RuboCop<CR>
+
+" emmet configuration
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
