@@ -1,1 +1,5 @@
-# My Linux i3-wm configuration
+## Last operating system
+  * Arch Linux
+## Window manager
+  * i3-gaps
+ 
